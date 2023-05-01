@@ -21,18 +21,27 @@
     <title>To Do List</title>
   </head>
   <body>
-
-<main>
-    <h1></h1>
-    <form action="">
-        <input type="text">
-        <button>
-            <i></i>
+    <main>
+      <h1>To Do List</h1>
+      <form action="">
+        <input type="text" class="to-do-input" />
+        <button type="submit" class="to-do-btn">
+          <i class="fas fa-plus-circle fa-lg"></i>
         </button>
-    </form>
+        <div class="select">
+          <select name="to-dos" class="to-do-filter">
+            <option value="all">All</option>
+            <option value="completed">Completed</option>
+            <option value="incomplete">Incomplete</option>
+          </select>
+        </div>
+      </form>
 
-</main>
+      <div class="to-do-container">
+        <ul class="to-do-list"></ul>
+      </div>
+    </main>
 
-    <script href="./js/script.js"></script>
+    <script src="./js/script.js"></script>
   </body>
 </html>

@@ -8,7 +8,31 @@ toDoListEl.addEventListener("click", deleteCheck);
 toDoFilterEl.addEventListener("change", filterToDo);
 document.addEventListener("DOMContentLoaded", getLocalToDos);
 
-function addToDo() {}
+function addToDo(event) {
+  event.preventDefault();
+
+  const toDoDiv = document.createElement("div");
+  toDoDiv.classList.add("to-do");
+  const newToDo = document.createElement("li");
+  newToDo.innerText = toDoInputEl.value;
+  newToDo.classList.add("to-do-item");
+  toDoDiv.appendChild(newToDo);
+
+//   saveLocalToDos(toDoInputEl.value);
+
+  const comletedBtn = document.createElement("button");
+  comletedBtn.innerHTML = '<i class="fas fa-check-circle"></i>';
+  comletedBtn.classList.add("complete-btn");
+  toDoDiv.appendChild(comletedBtn);
+
+  const trashBtn = document.createElement("btn");
+  trashBtn.innerHTML = '<i class="fas fa-trash"></i>';
+  trashBtn.classList.add("trash-btn");
+  toDoDiv.appendChild(trashBtn);
+
+  toDoListEl.appendChild(toDoDiv);
+  toDoInputEl.value = "";
+}
 
 function deleteCheck() {}
 

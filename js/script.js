@@ -18,7 +18,7 @@ function addToDo(event) {
   newToDo.classList.add("to-do-item");
   toDoDiv.appendChild(newToDo);
 
-//   saveLocalToDos(toDoInputEl.value);
+  // saveLocalToDos(toDoInputEl.value);
 
   const comletedBtn = document.createElement("button");
   comletedBtn.innerHTML = '<i class="fas fa-check-circle"></i>';
@@ -34,8 +34,48 @@ function addToDo(event) {
   toDoInputEl.value = "";
 }
 
-function deleteCheck() {}
+function deleteCheck(event) {
+  const item = event.target;
 
-function filterToDo() {}
+  if (item.classList[0] === "trash-btn") {
+    const todo = item.parentElement;
+    todo.classList.add("slide");
+    // removeLocalToDos(todo);
 
+    todo.addEventListener("transitionend", function () {
+      todo.remove();
+    });
+  } else if (item.classList[0] === "complete-btn") {
+    const todo = item.parentElement;
+    todo.classList.toggle("completed");
+  }
+}
+
+function filterToDo(event) {
+  const todos = toDoListEl.childNodes;
+  todos.forEach(function (todo) {
+    switch (event.target.value) {
+      case "all":
+        todo.style.display = "flex";
+        break;
+      case "completed":
+        if (todo.classList.contains("completed")) {
+          todo.style.display = "flex";
+        } else {
+          todo.style.display = "none";
+        }
+        break;
+      case "incomplete":
+        if (!todo.classList.contains("completed")) {
+          todo.style.display = "flex";
+        } else {
+          todo.style.display = "none";
+        }
+        break;
+    }
+  });
+}
+
+function saveLocalToDos() {}
 function getLocalToDos() {}
+function removeLocalToDos() {}

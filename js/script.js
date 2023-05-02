@@ -94,7 +94,7 @@ function getLocalToDos() {
   } else {
     todos = JSON.parse(localStorage.getItem("todos"));
   }
-  todo.forEach(function (todo) {
+  todos.forEach(function (todo) {
     const toDoDiv = document.createElement("div");
     toDoDiv.classList.add("to-do");
     const newToDo = document.createElement("li");

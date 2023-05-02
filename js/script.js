@@ -18,7 +18,7 @@ function addToDo(event) {
   newToDo.classList.add("to-do-item");
   toDoDiv.appendChild(newToDo);
 
-  // saveLocalToDos(toDoInputEl.value);
+  saveLocalToDos(toDoInputEl.value);
 
   const comletedBtn = document.createElement("button");
   comletedBtn.innerHTML = '<i class="fas fa-check-circle"></i>';
@@ -40,7 +40,7 @@ function deleteCheck(event) {
   if (item.classList[0] === "trash-btn") {
     const todo = item.parentElement;
     todo.classList.add("slide");
-    // removeLocalToDos(todo);
+    removeLocalToDos(todo);
 
     todo.addEventListener("transitionend", function () {
       todo.remove();
@@ -76,6 +76,54 @@ function filterToDo(event) {
   });
 }
 
-function saveLocalToDos() {}
-function getLocalToDos() {}
-function removeLocalToDos() {}
+function saveLocalToDos(todo) {
+  let todos;
+  if (localStorage.getItem("todos") === null) {
+    todos = [];
+  } else {
+    todos = JSON.parse(localStorage.getItem("todos"));
+  }
+  todos.push(todo);
+  localStorage.setItem("todos", JSON.stringify(todos));
+}
+
+function getLocalToDos() {
+  let todos;
+  if (localStorage.getItem("todos") === null) {
+    todos = [];
+  } else {
+    todos = JSON.parse(localStorage.getItem("todos"));
+  }
+  todo.forEach(function (todo) {
+    const toDoDiv = document.createElement("div");
+    toDoDiv.classList.add("to-do");
+    const newToDo = document.createElement("li");
+    newToDo.innerText = todo;
+    newToDo.classList.add("to-do-item");
+    toDoDiv.appendChild(newToDo);
+
+    const comletedBtn = document.createElement("button");
+    comletedBtn.innerHTML = '<i class="fas fa-check-circle"></i>';
+    comletedBtn.classList.add("complete-btn");
+    toDoDiv.appendChild(comletedBtn);
+
+    const trashBtn = document.createElement("btn");
+    trashBtn.innerHTML = '<i class="fas fa-trash"></i>';
+    trashBtn.classList.add("trash-btn");
+    toDoDiv.appendChild(trashBtn);
+
+    toDoListEl.appendChild(toDoDiv);
+  });
+}
+function removeLocalToDos(todo) {
+  let todos;
+  if (localStorage.getItem("todos") === null) {
+    todos = [];
+  } else {
+    todos = JSON.parse(localStorage.getItem("todos"));
+  }
+
+  const toDoIndex = todo.children[0].innerText;
+  todos.splice(todos.indexOf(toDoIndex), 1);
+  localStorage.setItem("todos", JSON.stringify(todos));
+}

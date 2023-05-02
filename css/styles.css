@@ -68,7 +68,7 @@ form button:hover {
   color: black;
   font-size: 1.5rem;
   display: flex;
-  justify-content: space-between;
+  justify-content: flex-end;
   align-items: center;
   transition: 0.5s;
   border-radius: 2rem;
